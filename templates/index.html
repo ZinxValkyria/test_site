@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Actions YAML Generator</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 <body>
     <h1>GitHub Actions YAML Generator</h1>
     <form action="/generate" method="post">
-        <label for="task">Task/Action:</label>
-        <select id="task" name="task" required>
+        <label for="task">What Task/Action would you like to implement:</label>
+        <select id="task" name="task" required onchange="handleTaskChange()">
             <option value="build">Build</option>
             <option value="test">Test</option>
             <option value="deploy">Deploy</option>
             <option value="linting">Linting</option>
             <option value="snyk">Snyk</option>
             <option value="setup">Setup</option>
-            <!-- Add more options as needed -->
+            <option value="custom" id="custom_action">Custom Workflow</option>
         </select><br><br>
 
-        <label for="os">Operating System:</label>
-        <select id="os" name="os" required>
-            <option value="ubuntu">Ubuntu</option>
-            <option value="windows">Windows</option>
-            <option value="mac">Mac</option>
-        </select><br><br>
+        <!-- Custom Workflow Section (hidden by default) -->
+        <div id="custom_flow" style="display: none;">
+            <label for="os">Operating System:</label>
+            <select id="os" name="os">
+                <option value="ubuntu">Ubuntu Linux</option>
+                <option value="windows">Windows</option>
+                <option value="mac">Mac</option>
+            </select><br><br>
 
-        <label for="triggers">Triggers:</label><br>
-        <input type="checkbox" id="push" name="triggers" value="push">
-        <label for="push">Push</label><br>
-        <input type="checkbox" id="pull_request" name="triggers" value="pull_request">
-        <label for="pull_request">Pull Request</label><br>
-        <!-- Add more triggers as needed -->
-        <br>
+            <label for="triggers">Triggers:</label><br>
+            <input type="checkbox" id="push" name="triggers" value="push"> Push
+            <input type="checkbox" id="pull_request" name="triggers" value="pull_request"> Pull Request
+            <input type="checkbox" id="workflow_call" name="triggers" value="workflow_call"> Workflow Call
+            <input type="checkbox" id="workflow_dispatch" name="triggers" value="workflow_dispatch"> Workflow Dispatch
+            <br><br>
 
-        <label for="additional_actions">Additional Actions:</label>
-        <select id="additional_actions" name="additional_actions" multiple>
-            <option value="build">Build</option>
-            <option value="test">Test</option>
-            <option value="deploy">Deploy</option>
-            <option value="linting">Linting</option>
-            <option value="snyk">Snyk</option>
-            <option value="setup">Setup</option>
-            <!-- Add more options as needed -->
-        </select><br><br>
-
-        <label for="direct_commands">Direct Commands:</label><br>
-        <textarea id="direct_commands" name="direct_commands" rows="4" cols="50" placeholder="Enter any direct commands here..."></textarea><br><br>
-
+            <label for="additional_actions">Additional Actions:</label>
+            <select id="additional_actions" name="additional_actions" multiple>
+                <option value="build">Build</option>
+                <option value="test">Test</option>
+                <option value="deploy">Deploy</option>
+                <option value="linting">Linting</option>
+                <option value="snyk">Snyk</option>
+                <option value="setup">Setup</option>
+            </select><br><br>
+        </div>
+        <div id="deploylist" style="display: none;">
+            <label for="deploy_task">Where would you like to deploy to:</label>
+            <select id="deploy_task" name="deploy_task" required onchange="handledeploy()">
+                <option value="aws">AWS</option>
+                <option value="gcp">Google(GCP)</option>
+                <option value="azure">Microsoft Azure</option>
+                <option value="docker">Docker</option>
+                <option value="gh_pages">Github Pages</option>
+            </select><br><br>
+        </div>
         <button type="submit">Generate YAML</button>
     </form>
+
+    <!-- YAML Script Output -->
+    <h2>Fetched YAML Script</h2>
+    <pre id="scriptOutput"></pre>
 </body>
 </html>

@@ -16,15 +16,25 @@ body {
 h1 {
     text-align: center;
 }
-
+/* Styling for the form */
 label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
+    display: inline-block;
+    width: auto;
+    margin-right: 10px;
 }
 
+/* Initially hide the custom section */
+#custom_flow {
+    display: none;
+}
+
+#deploy{
+    display:none
+}
+
+
 input[type="text"], textarea, select {
-    width: 100%;
+    width: auto;
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 20px;
