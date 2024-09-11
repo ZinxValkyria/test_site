@@ -36,28 +36,21 @@
             <input type="checkbox" id="workflow_call" name="triggers" value="workflow_call"> Workflow Call
             <input type="checkbox" id="workflow_dispatch" name="triggers" value="workflow_dispatch"> Workflow Dispatch
             <br><br>
-
-            <label for="additional_actions">Additional Actions:</label>
-            <select id="additional_actions" name="additional_actions" multiple>
-                <option value="build">Build</option>
-                <option value="test">Test</option>
-                <option value="deploy">Deploy</option>
-                <option value="linting">Linting</option>
-                <option value="snyk">Snyk</option>
-                <option value="setup">Setup</option>
-            </select><br><br>
         </div>
+        
+        <!-- Deployment section (hidden by default) -->
         <div id="deploylist" style="display: none;">
             <label for="deploy_task">Where would you like to deploy to:</label>
-            <select id="deploy_task" name="deploy_task" required onchange="handledeploy()">
+            <select id="deploy_task" name="deploy_task" required>
                 <option value="aws">AWS</option>
-                <option value="gcp">Google(GCP)</option>
+                <option value="gcp">Google (GCP)</option>
                 <option value="azure">Microsoft Azure</option>
                 <option value="docker">Docker</option>
-                <option value="gh_pages">Github Pages</option>
+                <option value="gh_pages">GitHub Pages</option>
             </select><br><br>
         </div>
-        <button type="submit">Generate YAML</button>
+
+        <!-- <button type="submit">Generate YAML</button> -->
     </form>
 
     <!-- YAML Script Output -->

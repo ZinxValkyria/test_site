@@ -2,54 +2,35 @@
 function handleTaskChange() {
     const taskSelect = document.getElementById('task');
     const customFlow = document.getElementById('custom_flow');
-    const deploy_to = document.getElementById('deploy');
-
+    const deployList = document.getElementById('deploylist');
+    const deployTask = document.getElementById('deploy_task');
 
     // Show or hide custom workflow fields based on the selected task
     if (taskSelect.value === 'custom') {
         customFlow.style.display = 'block';  // Show custom workflow options
-        }
-        else if (taskSelect.value === 'deploy') {
-            deploy_to.style.display = 'block';
-            handledeploy();
-        }
-        else {
+        deployList.style.display = 'none'; 
+        document.getElementById('scriptOutput').textContent = '';  // Hide deploy options
+    } else if (taskSelect.value === 'deploy') {
+        deployList.style.display = 'block';  // Show deploy options
+        customFlow.style.display = 'none'; 
+        document.getElementById('scriptOutput').textContent = '';  // Hide deploy options
+        // Hide custom workflow options
+        // Handle deployment task once it's selected
+        deployTask.addEventListener('change', () => {
+            fetchFromLocal(taskSelect.value, deployTask.value);
+        });
+    } else {
         customFlow.style.display = 'none';   // Hide custom workflow options
-        // Fetch YAML from the local server for predefined tasks
+        deployList.style.display = 'none';   // Hide deploy options
         fetchFromLocal(taskSelect.value);
     }
 }
 
-// Handle task selection
-function handledeploy() {
-   
-
-
-    // Show or hide custom workflow fields based on the selected task
-    if (deploy_to.value === 'aws') {
-            const url = `/fetch_yaml/deploy_to_aws.yaml`;
-        }
-        else if (deploy_to.value === 'gcp') {
-            const url = `/fetch_yaml/deploy_to_aws.yaml`;
-        }
-        else if (deploy_to.value === 'azure') {
-            const url = `/fetch_yaml/deploy_to_azure.yaml`;
-        }
-        else if (deploy_to.value === 'gh_pages') {
-            const url = `/fetch_yaml/deploy_to_ghpages.yaml`;
-        }
-        else {
-        customFlow.style.display = 'none';   // Hide custom workflow options
-        // Fetch YAML from the local server for predefined tasks
-        fetchFromLocal(taskSelect.value);
-    }
-}
 // Fetch the YAML script from the local folder
-function fetchFromLocal(task) {
-    const url = `/fetch_yaml/${task}.yaml`;
-    console.log(`Fetching ${url}...`);
-
-    fetch(url)
+function fetchFromLocal(task, deploytask) {
+    const taskurl = `/fetch_yaml/${task}.yaml`;
+    console.log(`Fetching ${taskurl}...`);
+    fetch(taskurl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok: ' + response.statusText);
@@ -58,35 +39,33 @@ function fetchFromLocal(task) {
         })
         .then(script => {
             console.log("YAML Script:", script);
-            // Display the fetched script in the output area
             document.getElementById('scriptOutput').textContent = script;
         })
         .catch(error => {
             console.error('Error fetching YAML script:', error);
             document.getElementById('scriptOutput').textContent = 'Error fetching YAML script.';
         });
-}
 
-function fetchFromLocal(task_deploy) {
-    const url = `/fetch_yaml/${task_deploy}.yaml`;
-    console.log(`Fetching ${url}...`);
-
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
-            return response.text();
-        })
-        .then(script => {
-            console.log("YAML Script:", script);
-            // Display the fetched script in the output area
-            document.getElementById('scriptOutput').textContent = script;
-        })
-        .catch(error => {
-            console.error('Error fetching YAML script:', error);
-            document.getElementById('scriptOutput').textContent = 'Error fetching YAML script.';
-        });
+    if (deploytask) {
+        const deployurl = `/fetch_yaml/${deploytask}.yaml`;
+        console.log(`Fetching ${deployurl}...`);
+        fetch(deployurl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(script => {
+                console.log("YAML Script:", script);
+                // Append deploy YAML to the existing task YAML
+                document.getElementById('scriptOutput').textContent += "\n" + script;
+            })
+            .catch(error => {
+                console.error('Error fetching deployment YAML script:', error);
+                document.getElementById('scriptOutput').textContent = 'Error fetching deployment YAML script.';
+            });
+    }
 }
 
 // Add event listener for task selection change
