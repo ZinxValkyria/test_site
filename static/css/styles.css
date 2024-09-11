@@ -2,7 +2,9 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
 }
 
 /* Body styling */
@@ -14,19 +16,22 @@ body {
 }
 
 h1 {
-    color: #2c3e50;
-    margin-bottom: 20px;
+    color: #004891;
+    margin-bottom: 40px;
+    text-align: center;
+
 }
 
 h2 {
     color: #34495e;
+    text-align: center;
 }
 
 /* Grid layout for splitting the page into 3 sections */
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    gap: 30px;
 }
 
 /* Left Section: Form styling */
@@ -34,7 +39,7 @@ h2 {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 label {
@@ -53,7 +58,7 @@ select, input[type="checkbox"] {
 /* YAML output styling */
 .middle-section pre {
     background-color: #eaeaea;
-    /* padding: 20px; */
+    padding: 20px;
     border-radius: 8px;
     border: 1px solid #ccc;
     white-space: pre-wrap;
@@ -72,7 +77,13 @@ select, input[type="checkbox"] {
     text-align: center;
     color: #555;
 }
-
+.left-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #555;
+}
 /* Button styling */
 button {
     padding: 10px 20px;
@@ -87,4 +98,5 @@ button {
 
 button:hover {
     background-color: #2980b9;
+    size-adjust: 0.5;
 }

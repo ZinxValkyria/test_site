@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="../static/js/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +15,9 @@
     <div class="container">
         <!-- Left Section: Form -->
         <div class="left-section">
-            <form action="/generate" method="post" onsubmit="return handleTaskChange()>
+            <h2>Tasks and Workflows</h2><br>
+
+            <form action="/generate" method="post" onsubmit="return handleTaskChange()">
                 <label for="task">What Task/Action would you like to implement:</label>
                 <select id="task" name="task" required onchange="handleTaskChange()">
                     <option value="build">Build</option>
@@ -63,8 +68,8 @@
         </div>
 
         <!-- Right Section: Future Content -->
-        <div class="right-section">
-            <h2>Additional Configurations</h2>
+         
+        <div class="right-section"> <h2>Additional Configurations</h2>
             <p>Future content for more settings can go here.</p>
         </div>
     </div>
