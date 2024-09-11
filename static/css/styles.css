@@ -1,37 +1,90 @@
-/* Basic form styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fa;
+    padding: 20px;
     color: #333;
 }
 
-form {
+h1 {
+    color: #2c3e50;
     margin-bottom: 20px;
+}
+
+h2 {
+    color: #34495e;
+}
+
+/* Grid layout for splitting the page into 3 sections */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+/* Left Section: Form styling */
+.left-section form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 label {
     font-weight: bold;
+    display: block;
+    margin-top: 10px;
 }
 
 select, input[type="checkbox"] {
-    margin-bottom: 10px;
     padding: 8px;
     font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
 
-pre {
+/* YAML output styling */
+.middle-section pre {
     background-color: #eaeaea;
-    padding: 10px;
+    /* padding: 20px; */
+    border-radius: 8px;
     border: 1px solid #ccc;
     white-space: pre-wrap;
     word-wrap: break-word;
+    height: 400px;
+    overflow-y: scroll;
     font-family: monospace;
 }
 
-h2 {
+/* Right Section */
+.right-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
     color: #555;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
 }

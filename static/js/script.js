@@ -19,7 +19,63 @@ function handleTaskChange() {
         deployTask.addEventListener('change', () => {
             fetchFromLocal(taskSelect.value, deployTask.value);
         });
-    } else {
+    } else {// Wait until the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('yamlForm');
+            const generateButton = document.getElementById('generateButton');
+            const scriptOutput = document.getElementById('scriptOutput');
+            const taskSelect = document.getElementById('task');
+            const customFlow = document.getElementById('custom_flow');
+            const deployList = document.getElementById('deploylist');
+        
+            // Handle task selection change
+            taskSelect.addEventListener('change', () => {
+                if (taskSelect.value === 'custom') {
+                    customFlow.style.display = 'block';  // Show custom workflow options
+                    deployList.style.display = 'none'; 
+                } else if (taskSelect.value === 'deploy') {
+                    deployList.style.display = 'block';  // Show deploy options
+                    customFlow.style.display = 'none'; 
+                } else {
+                    customFlow.style.display = 'none';   // Hide custom workflow options
+                    deployList.style.display = 'none';   // Hide deploy options
+                }
+            });
+        
+            // Handle form submission
+            generateButton.addEventListener('click', () => {
+                const taskValue = taskSelect.value;
+                const deployTask = document.getElementById('deploy_task').value;
+        
+                fetchFromLocal(taskValue, deployTask);
+            });
+        
+            // Fetch the YAML script from the local folder
+            function fetchFromLocal(task, deploytask) {
+                const taskurl = `/fetch_yaml/${task}.yaml`;
+                fetch(taskurl)
+                    .then(response => response.text())
+                    .then(script => {
+                        scriptOutput.textContent = script;
+                    })
+                    .catch(error => {
+                        scriptOutput.textContent = 'Error fetching YAML script.';
+                    });
+        
+                if (deploytask) {
+                    const deployurl = `/fetch_yaml/${deploytask}.yaml`;
+                    fetch(deployurl)
+                        .then(response => response.text())
+                        .then(script => {
+                            scriptOutput.textContent += "\n" + script;
+                        })
+                        .catch(error => {
+                            scriptOutput.textContent = 'Error fetching deployment YAML script.';
+                        });
+                }
+            }
+        });
+        
         customFlow.style.display = 'none';   // Hide custom workflow options
         deployList.style.display = 'none';   // Hide deploy options
         fetchFromLocal(taskSelect.value);
@@ -43,7 +99,7 @@ function fetchFromLocal(task, deploytask) {
         })
         .catch(error => {
             console.error('Error fetching YAML script:', error);
-            document.getElementById('scriptOutput').textContent = 'Error fetching YAML script.';
+            // document.getElementById('scriptOutput').textContent = 'Error fetching YAML script.';
         });
 
     if (deploytask) {

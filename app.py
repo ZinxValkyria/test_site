@@ -13,8 +13,9 @@ def index():
 @app.route('/fetch_yaml/<task>.yaml', methods=['GET'])
 def fetch_yaml(task):
     yaml_file = f"{task}.yaml"
+    file_path = os.path.join(SCRIPTS_DIR, yaml_file)
     # Check if the file exists before trying to send it
-    if os.path.isfile(os.path.join(SCRIPTS_DIR, yaml_file)):
+    if os.path.isfile(file_path):
         return send_from_directory(SCRIPTS_DIR, yaml_file)
     else:
         return "File not found", 404
