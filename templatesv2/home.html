@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Azure Page{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="intro-section">
+            <h1>Welcome to the GitHub Actions YAML Generator</h1>
+            <p>
+                This tool helps you generate GitHub Actions YAML scripts for various deployment and CI/CD tasks.
+                Use the navigation links to select a service and get started with the corresponding configurations.
+            </p>
+        </div>
+        
+            <h2>Available Services</h2>
+            <ul>
+                <li><a href="/aws">AWS Deployment</a></li>
+                <li><a href="/gcp">Google Cloud Platform (GCP) Deployment</a></li>
+                <li><a href="/docker">Docker Deployment</a></li>
+                <li><a href="/azure">Microsoft Azure Deployment</a></li>
+                <li><a href="/gh_pages">GitHub Pages Deployment</a></li>
+            </ul>
+    </div>
+    
+{% endblock %}
+
+
+   

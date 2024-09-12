@@ -68,6 +68,9 @@ function handleTaskChange() {
                         .then(response => response.text())
                         .then(script => {
                             scriptOutput.textContent += "\n" + script;
+                            customFlow.style.display = 'none';   // Hide custom workflow options
+                            deployList.style.display = 'none';   // Hide deploy options
+                            fetchFromLocal(taskSelect.value);
                         })
                         .catch(error => {
                             scriptOutput.textContent = 'Error fetching deployment YAML script.';
