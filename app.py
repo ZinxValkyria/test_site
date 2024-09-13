@@ -36,9 +36,9 @@ def azure():
     return render_template('azure.html')
 
 # Route for GitHub Pages
-@app.route('/gh_pages')
+@app.route('/custom')
 def gh_pages():
-    return render_template('gh_pages.html')
+    return render_template('custom.html')
 
 # Route to fetch YAML files from local storage
 @app.route('/fetch_yaml/<task>.yaml', methods=['GET'])

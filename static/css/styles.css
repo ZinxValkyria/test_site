@@ -1,33 +1,58 @@
-/* Reset
+/* Reset */
 * {
     font-family: "Roboto Condensed", sans-serif;
-} */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* Body styling */
-body {
+/* Ensure body takes full height of the viewport */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, sans-serif;
     /* color: #333; */
-    background-image: url('/static/images/gh3.jpg'); 
-    background-image: ;/* Path to your background image */
     background-size: cover; /* Cover the entire viewport */
     background-position: center; /* Center the image */
     background-repeat: no-repeat;
-    opacity: 0.5;
-    background: blur(5px); /* Apply blur effect */ }/* Prevent repeating the image
+}
+
+/* Ensure main content grows and pushes footer to bottom */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header and Navigation Bar Styling */
 header {
     color: white;
 }
+li{
+    list-style-type: none;
+    padding-left: 35px;
+
+}
+.intro-section {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 2em;
+    border-radius: 20px;
+    margin-right: 40px;
+}
+
 /* Navigation Bar Styling */
 .topnav {
     background-color: #333;
     display: flex; /* Use flexbox for layout */
     justify-content: center; /* Center the navigation items horizontally */
     align-items: center; /* Center items vertically */
-    padding: 0 20px; /* Add padding to the left and right */
-    height: 60px; /* Adjust the height as needed */
+    height: 50px; /* Adjust the height as needed */
+    margin-bottom: 20px; /* Add margin at the bottom */ 
+    border-radius: 15px;
 }
 
 .topnav ul {
@@ -37,20 +62,15 @@ header {
     display: flex; /* Display list items horizontally */
     width: 100%; /* Ensure the ul takes full width */
     justify-content: space-around; /* Distribute items evenly */
-}
-
-.topnav li {
-    margin: 0; /* Remove default margin */
+    border-radius: 20px;
 }
 
 .topnav a {
     color: #f2f2f2;
     text-decoration: none;
-    font-size: 16px;
-    padding: 15px; /* Add padding around text */
+    font-size: 16px; /* Add padding around text */
     display: flex; /* Use flexbox to center content */
     align-items: center; /* Center text vertically */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
 .topnav a:hover {
@@ -58,14 +78,14 @@ header {
     color: black;
 }
 
-
 /* Grid layout for splitting the page into 3 sections */
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto; /* Add margin at the top */
+    flex: 1; /* Make sure the container grows */
 }
 
 /* Left Section: Form styling */
@@ -82,12 +102,6 @@ header {
     padding: 20px;
     border-radius: 8px;
 }
-
-/* label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-} */
 
 select,
 input[type="checkbox"] {
@@ -119,24 +133,27 @@ input[type="checkbox"] {
     text-align: center;
     color: #555;
 }
-h1{
+
+/* Headings */
+h1 {
     text-align: center;
     color: #4f0303;
 }
-h2{
+
+h2 {
     text-align: center;
     color: #555;
 }
-/* Button styling */
+
+/* Center button using Flexbox in its parent container */
 button {
     padding: 2% 20px;
     background-color: #3498db;
     color: white;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
+    display: block;
+    margin: 0 auto; 
+    margin-top: 15px;/* Center horizontally */
 }
 
 button:hover {
@@ -145,13 +162,17 @@ button:hover {
 
 /* Footer Styling */
 footer {
-    background-color: #f9f9f9;
-    padding: 20px;
+    background-color: #333;
+    color: white;
     text-align: center;
-    border-top: 1px solid #ddd;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
-footer p {
-    color: #555;
-    font-size: 14px;
+/* For small screen sizes, make the layout more responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Single column layout for small screens */
+    }
 }

@@ -17,4 +17,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: your-dockerhub-username/your-repo:latest
+          tags: {{your-dockerhub-username/your-repo:latest}}
