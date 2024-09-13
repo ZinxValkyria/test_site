@@ -123,6 +123,14 @@ input[type="checkbox"] {
     overflow-y: scroll;
     font-family: monospace;
 }
+.middle-section img {
+width: 20%;
+display: block;
+margin: 0 auto; 
+
+
+}
+
 
 /* Right Section */
 .right-section {
@@ -154,6 +162,7 @@ button {
     display: block;
     margin: 0 auto; 
     margin-top: 15px;/* Center horizontally */
+    margin-bottom: 30px;
 }
 
 button:hover {
