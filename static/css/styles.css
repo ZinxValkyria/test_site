@@ -32,7 +32,7 @@ header {
 }
 li{
     list-style-type: none;
-    padding-left: 35px;
+    margin-left: 60px;
 
 }
 .intro-section {
@@ -42,6 +42,7 @@ li{
     padding: 2em;
     border-radius: 20px;
     margin-right: 40px;
+    margin-bottom: 50px;
 }
 
 /* Navigation Bar Styling */
@@ -50,8 +51,8 @@ li{
     display: flex; /* Use flexbox for layout */
     justify-content: center; /* Center the navigation items horizontally */
     align-items: center; /* Center items vertically */
-    height: 50px; /* Adjust the height as needed */
-    margin-bottom: 20px; /* Add margin at the bottom */ 
+    height: 43px; /* Adjust the height as needed */
+    margin-bottom: 5%; /* Add margin at the bottom */ 
     border-radius: 15px;
 }
 
@@ -83,18 +84,20 @@ li{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
-    max-width: 1200px;
-    margin: 20px auto; /* Add margin at the top */
+    max-width: 2000px;
+    text-align: center;
+    justify-content: center;
     flex: 1; /* Make sure the container grows */
 }
 
 /* Left Section: Form styling */
 .left-section {
     background-color: #f9f9f9;
-    padding: 20px;
+    padding-left:  20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #555;
+    margin-left: 150px;
 }
 
 .left-section form {
@@ -114,24 +117,59 @@ input[type="checkbox"] {
 /* YAML output styling */
 .middle-section pre {
     background-color: #eaeaea;
-    padding: 20px;
+    padding: 50px;
+    margin-left: 30px;
     border-radius: 8px;
     border: 1px solid #ccc;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    height: 300px;
+    height: 480px;
     overflow-y: scroll;
     font-family: monospace;
 }
 .middle-section img {
-width: 20%;
+width: 12.5%;
 display: block;
 margin: 0 auto; 
 
 
 }
+.full-screen-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 60vh; /* Full viewport height */
+    padding: 20px; /* Optional padding */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
 
+.intro-section {
+    max-width: 800px; /* Optional: limit max width of the intro section */
+    width: 100%; /* Ensure it takes up full width available */
+    text-align: center; /* Center-align text */
+}
 
+.icon-container {
+    display: flex;
+    justify-content: space-around; /* Space out items evenly */
+    align-items: center; /* Center items vertically */
+    padding: 20px 0; /* Optional padding for top and bottom */
+    flex-wrap: wrap; /* Allow items to wrap to the next line if necessary */
+}
+
+.icon-item {
+    flex: 1; /* Make items flexible */
+    max-width: 120px; /* Limit max width of each icon */
+    text-align: center; /* Center-align images and text */
+    margin: 0 10px; /* Space out items */
+}
+
+.icon-item img {
+    max-width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+.icon-item:hover img {
+    transform: scale(1.2); /* Scale image by 20% */
+}
 /* Right Section */
 .right-section {
     background-color: #f9f9f9;
@@ -146,6 +184,7 @@ margin: 0 auto;
 h1 {
     text-align: center;
     color: #4f0303;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -162,7 +201,7 @@ button {
     display: block;
     margin: 0 auto; 
     margin-top: 15px;/* Center horizontally */
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 button:hover {
@@ -174,9 +213,10 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    position: relative;
+    position: sticky;
     bottom: 0;
     width: 100%;
+    height:auto;
 }
 
 /* For small screen sizes, make the layout more responsive */

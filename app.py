@@ -1,21 +1,26 @@
 import os
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, abort
 
 app = Flask(__name__, template_folder='templatesv2')
 
 # Define the directory where local YAML scripts are stored
 SCRIPTS_DIR = os.path.join(os.getcwd(), 'scripts')
 
+# Ensure that the scripts directory exists
+if not os.path.exists(SCRIPTS_DIR):
+    raise FileNotFoundError(f"The directory {SCRIPTS_DIR} does not exist. Please check your project structure.")
+
 # Route for the homepage
 @app.route('/')
 def home():
-    return render_template('home.html')  # Optional homepage
+    return render_template('home.html')
 
 # Route for AWS page
 @app.route('/aws')
 def aws():
     return render_template('aws.html')
 
+# Route for GitHub page
 @app.route('/github')
 def github():
     return render_template('github.html')
@@ -35,53 +40,22 @@ def docker():
 def azure():
     return render_template('azure.html')
 
-# Route for GitHub Pages
+# Route for GitHub Pages (Custom page)
 @app.route('/custom')
 def gh_pages():
     return render_template('custom.html')
 
+
 # Route to fetch YAML files from local storage
-@app.route('/fetch_yaml/<task>.yaml', methods=['GET'])
-def fetch_yaml(task):
-    yaml_file = f"{task}.yaml"
-    file_path = os.path.join(SCRIPTS_DIR, yaml_file)
+@app.route('/scripts/<path:filename>', methods=['GET'])
+def fetch_yaml(filename):
+    file_path = os.path.join(SCRIPTS_DIR, filename)
     
-    # Check if the file exists before trying to send it
+    # Check if the file exists before sending it
     if os.path.isfile(file_path):
-        return send_from_directory(SCRIPTS_DIR, yaml_file)
+        return send_from_directory(SCRIPTS_DIR, filename)
     else:
-        return "File not found", 404
+        return abort(404, description="File not found")
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-# Load environment variables from .env file
-# load_dotenv('my.env')
-
-# app = Flask(__name__)
-
-# # # Get the S3 base URL from environment variable
-# S3_BASE_URL = os.getenv('S3_BASE_URL')
-
-# @app.route('/fetch_yaml/<task>.yaml', methods=['GET'])
-# def fetch_yaml(task):
-#     yaml_file = f"{task}.yaml"
-#     file_url = f"{S3_BASE_URL}/{yaml_file}"
-
-#     try:
-#         # Send an HTTP GET request to fetch the file from S3 public URL
-#         response = requests.get(file_url)
-
-#         # Check if the file exists
-#         if response.status_code == 200:
-#             # Return the file content as a response
-#             return Response(response.content, mimetype='application/x-yaml')
-#         else:
-#             return "File not found", 404
-
-#     except Exception as e:
-#         return f"An error occurred: {str(e)}", 500
-
-# if __name__ == '__main__':
-#     app.run(debug=True)

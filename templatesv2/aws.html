@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block title %}Azure Page{% endblock %}
-
 {% block content %}
 <h1>AWS</h1>
       <div class="container">
@@ -22,7 +20,7 @@
                 <!-- Deployment section (hidden by default) -->
                 <div id="deploylist" style="display: none;">
                     <label for="deploy_task">What AWS service would you like to deploy to:</label>
-                    <select id="deploy_task" name="deploy_task" required>
+                    <select id="deploy_task" name="deploy_task" required onchange="handleAWSDeploy()">
                         <option value="s3">S3 bucket</option>
                         <option value="ec2">EC2 (Elastic Compute Cloud)</option>
                         <option value="ecr">ECR (Elastic Container Registry)/option>
@@ -30,7 +28,7 @@
                         <option value="eks">EKS (Elastic Kubernetes serice)</option>
                         <option value="LAMDA">AWS Lambda</option>
                     </select><br><br>
-                    <button type="submit" class="copy" ">Generate YAML</button>
+                    <button type="submit" class="copy">Generate YAML</button>
 
                 </div>
             </form>
@@ -52,6 +50,7 @@
             <p>Future content for more settings can go here.</p>
         </div>
     </div>
-    
+    <script src = "/static/js/aws.js"></script>
+
 {% endblock %}
 

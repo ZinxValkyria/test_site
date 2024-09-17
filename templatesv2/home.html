@@ -1,10 +1,9 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Azure Page{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="full-screen-container">
         <div class="intro-section">
             <h1>Welcome to the GitHub Actions YAML Generator</h1>
             <p>
@@ -12,35 +11,22 @@
                 Use the navigation links to select a service and get started with the corresponding configurations.
             </p>
         </div>
-            <li>
-                <a href="/aws">
-                    <img src="/static/images/aws.png" alt="AWS Icon" style="width:280px; height:280px;"> 
-                </a>
-            </li>
-            <li>
-                <a href="/gcp">
-                    <img src="/static/images/gcp.jpg" alt="GCP Icon" style="width:250px; height:250px;">
-                </a>
-            </li>
-            <li>
-                <a href="/azure">
-                    <img src="/static/images/az.jpg" alt="Azure Icon" style="width:250px; height:200px;">                </a>
-            </li>
-            <li>
-                <a href="/github">
-                    <img src="/static/images/gh-logo.png" alt="GitHub Icon" style="width:300px; height:200px;">
-                </a>
-            </li>
-            <li>
-                <a href="/custom">
-                    <img src="/static/images/custom.png" alt="Custom Workflow Icon" style="width:200px; height:200px;">
-                </a>
-            </li>
-        
-         
     </div>
-    
+    <div class="icon-container">
+        <a href="/aws" class="icon-item">
+            <img src="/static/images/aws.png" alt="AWS Icon">
+        </a>
+        <a href="/gcp" class="icon-item">
+            <img src="/static/images/gcp.jpg" alt="GCP Icon">
+        </a>
+        <a href="/azure" class="icon-item">
+            <img src="/static/images/az.jpg" alt="Azure Icon">
+        </a>
+        <a href="/github" class="icon-item">
+            <img src="/static/images/gh-logo.png" alt="GitHub Icon">
+        </a>
+        <a href="/custom" class="icon-item">
+            <img src="/static/images/custom.png" alt="Custom Workflow Icon">
+        </a>
+    </div>
 {% endblock %}
-
-
-   

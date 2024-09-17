@@ -9,7 +9,7 @@ function handleTaskChange() {
     if (taskSelect.value === 'custom') {
         customFlow.style.display = 'block';  // Show custom workflow options
         deployList.style.display = 'none'; 
-        document.getElementById('scriptOutput').textContent = '';  // Hide deploy options
+        // document.getElementById('scriptOutput').textContent = '';  // Hide deploy options
     } else if (taskSelect.value === 'deploy') {
         deployList.style.display = 'block';  // Show deploy options
         customFlow.style.display = 'none'; 
@@ -19,15 +19,7 @@ function handleTaskChange() {
         deployTask.addEventListener('change', () => {
             fetchFromLocal(taskSelect.value, deployTask.value);
         });
-    } else {// Wait until the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('yamlForm');
-            const generateButton = document.getElementById('generateButton');
-            const scriptOutput = document.getElementById('scriptOutput');
-            const taskSelect = document.getElementById('task');
-            const customFlow = document.getElementById('custom_flow');
-            const deployList = document.getElementById('deploylist');
-        
+
             // Handle task selection change
             taskSelect.addEventListener('change', () => {
                 if (taskSelect.value === 'custom') {
@@ -83,7 +75,6 @@ function handleTaskChange() {
         deployList.style.display = 'none';   // Hide deploy options
         fetchFromLocal(taskSelect.value);
     }
-}
 
 // Fetch the YAML script from the local folder
 function fetchFromLocal(task, deploytask) {
