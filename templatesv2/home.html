@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Azure Page{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
     <div class="full-screen-container">
@@ -11,22 +11,26 @@
                 Use the navigation links to select a service and get started with the corresponding configurations.
             </p>
         </div>
-    </div>
-    <div class="icon-container">
-        <a href="/aws" class="icon-item">
-            <img src="/static/images/aws.png" alt="AWS Icon">
-        </a>
-        <a href="/gcp" class="icon-item">
-            <img src="/static/images/gcp.jpg" alt="GCP Icon">
-        </a>
-        <a href="/azure" class="icon-item">
-            <img src="/static/images/az.jpg" alt="Azure Icon">
-        </a>
-        <a href="/github" class="icon-item">
-            <img src="/static/images/gh-logo.png" alt="GitHub Icon">
-        </a>
-        <a href="/custom" class="icon-item">
-            <img src="/static/images/custom.png" alt="Custom Workflow Icon">
-        </a>
+
+        <!-- Move icon container closer to the bottom -->
+        <div class="icon-section">
+            <div class="icon-container">
+                <a href="/aws" class="icon-item">
+                    <img src="/static/images/aws.png" alt="AWS Icon">
+                </a>
+                <a href="/gcp" class="icon-item">
+                    <img src="/static/images/gcp.jpg" alt="GCP Icon">
+                </a>
+                <a href="/azure" class="icon-item">
+                    <img src="/static/images/az.jpg" alt="Azure Icon">
+                </a>
+                <a href="/github" class="icon-item">
+                    <img src="/static/images/gh-logo.png" alt="GitHub Icon">
+                </a>
+                <a href="/custom" class="icon-item">
+                    <img src="/static/images/custom.png" alt="Custom Workflow Icon">
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock %}
